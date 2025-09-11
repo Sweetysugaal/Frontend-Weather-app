@@ -1,66 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Now</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;500;600;700&family=Bricolage+Grotesque:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <img src="./assets/images/logo.svg" alt=" Weather Now Logo" />
+      </div>
+      <div class="units">
+        <button class="units-btn">
+          <img src="./assets/images/icon-units.svg" alt="Units Icon" />
+          <span>Units</span>
+          <img src="./assets/images/icon-dropdown.svg" alt="Dropdown Icon" />
+        </button>
+        <!-- Dropdown options will be styled/added later -->
+      </div>
+    </header>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Weather app</title>
+    <main class="main">
+      <!-- Title -->
+      <h1 class="title">How’s the sky looking today?</h1>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <div class="search-input">
+          <img
+            src="./assets/images/icon-search.svg"
+            alt="Search"
+            class="search-icon"
+          />
+          <input type="text" placeholder="Search for a place" />
+        </div>
+        <button type="submit">Search</button>
+      </div>
 
-  Units
+      <!-- Current Weather Card -->
+      <div class="cards-container">
+        <div class="current-weather-card">
+          <section class="current-weather">
+            <div class="location">
+              <h2>Berlin, Germany</h2>
+              <p>Tuesday, Aug 5, 2025</p>
+            </div>
+            <div class="temperature">
+              <span class="temp">20°</span>
+              <span class="icon">☀️</span>
+            </div>
+          </section>
+          <!-- Weather Stats -->
+          <section class="weather-stats">
+            <div class="stat">
+              <p>Feels Like</p>
+              <h3>18°</h3>
+            </div>
+            <div class="stat">
+              <p>Humidity</p>
+              <h3>46%</h3>
+            </div>
+            <div class="stat">
+              <p>Wind</p>
+              <h3>14 km/h</h3>
+            </div>
+            <div class="stat">
+              <p>Precipitation</p>
+              <h3>0 mm</h3>
+            </div>
+          </section>
+          <!-- Daily Forecast -->
+          <section class="daily-forecast">
+            <h2 class="section-title">Daily forecast</h2>
+            <ul class="forecast-list">
+              <li class="day">
+                <p>Tue</p>
+                <span>🌧️</span>
+                <p>20° / 14°</p>
+              </li>
+              <li class="day">
+                <p>Wed</p>
+                <span>🌧️</span>
+                <p>21° / 15°</p>
+              </li>
+              <li class="day">
+                <p>Thu</p>
+                <span>☀️</span>
+                <p>24° / 14°</p>
+              </li>
+              <li class="day">
+                <p>Fri</p>
+                <span>🌥️</span>
+                <p>25° / 13°</p>
+              </li>
+              <li class="day">
+                <p>Sat</p>
+                <span>🌩️</span>
+                <p>21° / 15°</p>
+              </li>
+              <li class="day">
+                <p>Sun</p>
+                <span>🌧️</span>
+                <p>25° / 16°</p>
+              </li>
+              <li class="day">
+                <p>Mon</p>
+                <span>🌫️</span>
+                <p>24° / 15°</p>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <!-- Hourly Forecast -->
+        <div class="hourly-forecast-card">
+          <section class="hourly-forecast">
+            <h2 class="section-title">Hourly forecast</h2>
+            <select class="day-select">
+              <option>Tuesday</option>
+            </select>
+            <ul class="hourly-list">
+              <li>3 PM - 🌥️ 20°</li>
+              <li>4 PM - ☁️ 20°</li>
+              <li>5 PM - ☀️ 20°</li>
+              <li>6 PM - 🌥️ 19°</li>
+              <li>7 PM - 🌧️ 18°</li>
+              <li>8 PM - 🌧️ 18°</li>
+              <li>9 PM - 🌧️ 17°</li>
+              <li>10 PM - 🌧️ 17°</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </main>
 
-  Switch to Imperial/Metric
-
-  Temperature
-
-  Celsius (°C)
-  Fahrenheit (°F)
-
-  Wind Speed
-
-  km/h
-  mph
-
-  Precipitation
-
-  Millimeters (mm)
-  Inches (in)
-
-  How's the sky looking today?
-
-  Search for a city, e.g., New York
-  Search
-
-  Feels like
-  <!-- Insert temperature here -->
-
-  Humidity
-  <!-- Insert humidity here -->
-
-  Wind
-  <!-- Insert wind here -->   
-  
-  Precipitation
-  <!-- Insert precipitation here -->
-
-  Daily forecast
-  <!-- Insert daily forecast for the next 7 days here -->
-
-  Hourly forecast
-  <!-- Insert hourly forecast for the selected day here -->
-
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+    <footer class="footer">
+      <p>
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="#">Your Name</a>.
+      </p>
+    </footer>
+  </body>
 </html>

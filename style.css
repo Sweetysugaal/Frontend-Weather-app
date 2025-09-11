@@ -1,0 +1,263 @@
+/* -------------------
+  Global Styles
+------------------- */
+:root {
+  /* Neutral */
+  --neutral-900: hsl(243, 96%, 9%);
+  --neutral-800: hsl(243, 27%, 20%);
+  --neutral-700: hsl(243, 23%, 24%);
+  --neutral-600: hsl(243, 23%, 30%);
+  --neutral-300: hsl(240, 6%, 70%);
+  --neutral-200: hsl(250, 6%, 84%);
+  --neutral-0: hsl(0, 0%, 100%);
+
+  /* Accent */
+  --orange-500: hsl(28, 100%, 52%);
+  --blue-500: hsl(233, 67%, 56%);
+  --blue-700: hsl(248, 70%, 36%);
+
+  /* Fonts */
+  --font-body: "DM Sans", sans-serif;
+  --font-heading: "Bricolage Grotesque", sans-serif;
+
+  --font-size-body: 18px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  background-color: var(--neutral-900);
+  color: var(--neutral-0);
+  line-height: 1.6;
+  padding: 48px 112px 8px 112px;
+}
+
+/* -------------------
+  Layout
+------------------- */
+header,
+footer,
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.units button {
+  background: var(--neutral-700);
+  color: var(--neutral-0);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* -------------------
+  Title & Search
+------------------- */
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.search-input {
+  position: relative;
+  flex: 1;
+  max-width: 400px;
+}
+
+.search-input input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem; /* extra left padding for icon */
+  border-radius: 8px;
+  border: none;
+  background: var(--neutral-700);
+  color: var(--neutral-0);
+}
+
+.search-input .search-icon {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  pointer-events: none; /* so click goes to input */
+}
+
+.search-bar button {
+  background: var(--blue-500);
+  color: var(--neutral-0);
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.search-bar button:hover {
+  background: var(--blue-700);
+}
+
+.search-bar button:focus {
+  outline: 2px solid var(--blue-500);
+  outline-offset: 2px;
+}
+/* -------------------
+  Current Weather
+------------------- */
+.cards-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.current-weather {
+  /* background: var(--blue-700); */
+  background-image: url("./assets/images/bg-today-large.svg");
+  background-size: cover;
+  background-position: center;
+  padding: 4.5rem;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.current-weather h2 {
+  font-size: 1.25rem;
+}
+
+.temperature {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+/* -------------------
+  Stats
+------------------- */
+.weather-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.weather-stats .stat {
+  background: var(--neutral-800);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.weather-stats p {
+  color: var(--neutral-200);
+  font-size: 0.9rem;
+}
+
+.weather-stats h3 {
+  font-size: 1.25rem;
+}
+
+/* -------------------
+  Daily Forecast
+------------------- */
+.daily-forecast {
+  margin-bottom: 2rem;
+}
+
+.daily-forecast .forecast-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.daily-forecast .day {
+  background: var(--neutral-800);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  flex: 1;
+}
+
+.daily-forecast .day span {
+  font-size: 1.5rem;
+  display: block;
+  margin: 0.5rem 0;
+}
+
+/* -------------------
+  Hourly Forecast
+------------------- */
+.hourly-forecast {
+  background: var(--neutral-800);
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.hourly-forecast .day-select {
+  background: var(--neutral-700);
+  color: var(--neutral-0);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.hourly-forecast .hourly-list {
+  list-style: none;
+}
+
+.hourly-forecast .hourly-list li {
+  background: var(--neutral-700);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* -------------------
+  Footer
+------------------- */
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: var(--neutral-300);
+}
+
+footer a {
+  color: var(--orange-500);
+}
