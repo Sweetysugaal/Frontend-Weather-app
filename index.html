@@ -58,8 +58,13 @@
               <p>Tuesday, Aug 5, 2025</p>
             </div>
             <div class="temperature">
-              <span class="temp">20°</span>
-              <span class="icon">☀️</span>
+              <span class="icon"
+                ><img
+                  src="./assets/images/icon-sunny.webp"
+                  alt="icon-sunny"
+                  width="150"
+              /></span>
+              <span class="temp">60°</span>
             </div>
           </section>
           <!-- Weather Stats -->
@@ -126,19 +131,21 @@
         <!-- Hourly Forecast -->
         <div class="hourly-forecast-card">
           <section class="hourly-forecast">
-            <h2 class="section-title">Hourly forecast</h2>
-            <select class="day-select">
-              <option>Tuesday</option>
-            </select>
+            <div class="hourly-header">
+              <h2 class="section-title">Hourly forecast</h2>
+              <select class="day-select">
+                <option>Tuesday</option>
+              </select>
+            </div>
             <ul class="hourly-list">
-              <li>3 PM - 🌥️ 20°</li>
-              <li>4 PM - ☁️ 20°</li>
-              <li>5 PM - ☀️ 20°</li>
-              <li>6 PM - 🌥️ 19°</li>
-              <li>7 PM - 🌧️ 18°</li>
-              <li>8 PM - 🌧️ 18°</li>
-              <li>9 PM - 🌧️ 17°</li>
-              <li>10 PM - 🌧️ 17°</li>
+              <li class="hour">3 PM - 🌥️ 20°</li>
+              <li class="hour">4 PM - ☁️ 20°</li>
+              <li class="hour">5 PM - ☀️ 20°</li>
+              <li class="hour">6 PM - 🌥️ 19°</li>
+              <li class="hour">7 PM - 🌧️ 18°</li>
+              <li class="hour">8 PM - 🌧️ 18°</li>
+              <li class="hour">9 PM - 🌧️ 17°</li>
+              <li class="hour">10 PM - 🌧️ 17°</li>
             </ul>
           </section>
         </div>
@@ -150,7 +157,8 @@
         Challenge by
         <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
           >Frontend Mentor</a
-        >. Coded by <a href="#">Your Name</a>.
+        >. Coded by
+        <a href="https://github.com/Sweetysugaal">Zeinab Ali Sugaal</a>.
       </p>
     </footer>
   </body>

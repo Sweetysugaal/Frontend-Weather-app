@@ -20,7 +20,10 @@
   --font-body: "DM Sans", sans-serif;
   --font-heading: "Bricolage Grotesque", sans-serif;
 
-  --font-size-body: 18px;
+  /* --font-size-body: 18px / 1.6rem; */
+  --font-size-body: 1.6rem;
+  /* --font-size-heading: 24px / 2.4rem; */
+  --font-size-heading: 2.4rem;
 }
 
 * {
@@ -35,7 +38,13 @@ body {
   background-color: var(--neutral-900);
   color: var(--neutral-0);
   line-height: 1.6;
-  padding: 48px 112px 8px 112px;
+  /* padding: 48px 112px 8px 112px; */
+  padding: 2rem;
+}
+
+img {
+  max-width: 100%;
+  display: block;
 }
 
 /* -------------------
@@ -82,7 +91,7 @@ header {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
 
 .search-input {
@@ -138,11 +147,10 @@ header {
 }
 
 .current-weather {
-  /* background: var(--blue-700); */
   background-image: url("./assets/images/bg-today-large.svg");
   background-size: cover;
   background-position: center;
-  padding: 4.5rem;
+  padding: 3rem;
   border-radius: 16px;
   display: flex;
   justify-content: space-between;
@@ -151,14 +159,19 @@ header {
 }
 
 .current-weather h2 {
-  font-size: 1.25rem;
+  font-size: var(--font-body-size);
+}
+.current-weather p {
+  font-size: 0.8rem;
+  color: var(--neutral-200);
 }
 
 .temperature {
   display: flex;
   align-items: center;
   gap: 1rem;
-  font-size: 3rem;
+  font-size: 4rem;
+  font-family: var(--font-heading);
   font-weight: 700;
 }
 
@@ -239,13 +252,26 @@ header {
   list-style: none;
 }
 
+.hourly-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
 .hourly-forecast .hourly-list li {
   background: var(--neutral-700);
   padding: 0.75rem 1rem;
   border-radius: 6px;
   margin-bottom: 0.5rem;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+}
+.hour {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* -------------------
@@ -260,4 +286,54 @@ footer {
 
 footer a {
   color: var(--orange-500);
+}
+
+/* Mobile layout adjustments */
+@media (max-width: 768px) {
+  /* main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 1rem;
+  } */
+
+  .search-bar {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .search-bar input {
+    width: 100%;
+  }
+
+  .current-weather {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .weather-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
+    gap: 1rem;
+    width: 100%;
+    height: 300px;
+  }
+
+  .daily-forecast .forecast-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 1rem;
+  }
+
+  .hourly-forecast {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .cards-container {
+    grid-template-columns: 1fr; /* single column layout */
+  }
 }
