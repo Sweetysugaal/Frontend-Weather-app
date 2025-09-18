@@ -81,7 +81,7 @@ header {
   Title & Search
 ------------------- */
 .title {
-  font-size: 2.5rem;
+  font-size: var(--font-size-heading);
   font-weight: 700;
   font-family: var(--font-heading);
   text-align: center;
@@ -109,6 +109,10 @@ header {
   background: var(--neutral-700);
   color: var(--neutral-0);
 }
+
+/* start drop down */
+
+/* End */
 
 .search-input .search-icon {
   position: absolute;
@@ -175,6 +179,10 @@ header {
   font-family: var(--font-heading);
   font-weight: 700;
 }
+/* .temp {
+  font-size: ;
+  font-family: var(--font-heading);
+} */
 
 /* -------------------
   Stats
@@ -206,8 +214,6 @@ header {
 /* -------------------
   Daily Forecast
 ------------------- */
-.daily-forecast {
-}
 
 .forecast-list {
   display: grid;
@@ -241,7 +247,7 @@ header {
 ------------------- */
 .hourly-forecast {
   background: var(--neutral-800);
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 12px;
 }
 
@@ -259,8 +265,15 @@ header {
   margin-bottom: 1rem;
 }
 
-.hourly-forecast .hourly-list {
+/* .hourly-forecast .hourly-list {
   list-style: none;
+} */
+
+.hourly-list div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 .hourly-header {
@@ -270,7 +283,7 @@ header {
   margin-bottom: 1.2rem;
 }
 
-.hourly-forecast .hourly-list li {
+.hourly-forecast .hourly-list div {
   background: var(--neutral-700);
   padding: 0.75rem 1rem;
   border-radius: 6px;
@@ -300,18 +313,41 @@ footer a {
 }
 
 /* Mobile layout adjustments */
-@media (max-width: 768px) {
-  /* main {
-    display: grid;
+/* below 1200px */
+@media (max-width: 75em) {
+  .cards-container {
     grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 0 1rem;
-  } */
+  }
+  .title {
+    font-size: 3.5rem;
+    line-height: 1;
+    margin-bottom: 5rem;
+  }
+}
 
+@media (max-width: 768px) {
+  .current-weather {
+    background-image: url("./assets/images/bg-today-small.svg");
+    background-size: cover;
+    background-position: center;
+  }
+  .title {
+    font-size: 4.5rem;
+    line-height: 1;
+    margin-bottom: 5rem;
+  }
+  .search-bar button,
+  .search-input input {
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
   .search-bar {
     flex-direction: column;
     gap: 2rem;
     width: 100%;
+  }
+  .search-input input {
+    padding: 1rem 1rem 1rem 3.5rem; /* left padding for icon */
   }
   .search-input {
     max-width: 100%;
