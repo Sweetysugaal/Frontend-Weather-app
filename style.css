@@ -379,7 +379,7 @@ footer a {
     margin-bottom: 5rem;
   }
 }
-
+/* below 768px */
 @media (max-width: 768px) {
   .current-weather {
     background-image: url("./assets/images/bg-today-small.svg");
