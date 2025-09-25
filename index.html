@@ -90,7 +90,7 @@
             alt="Search"
             class="search-icon"
           />
-          <input type="text" placeholder="Enter city name" />
+          <input type="text" id="search-input" />
         </div>
         <button type="submit">Search</button>
       </div>
@@ -104,12 +104,13 @@
               <p>Tuesday, Aug 5, 2025</p>
             </div>
             <div class="temperature">
-              <span class="icon"
-                ><img
+              <span class="icon">
+                <img
                   src="./assets/images/icon-sunny.webp"
                   alt="icon-sunny"
                   width="150"
-              /></span>
+                />
+              </span>
               <span class="temp">20°</span>
             </div>
           </section>
@@ -132,7 +133,7 @@
               <h3>0 mm</h3>
             </div>
           </section>
-          <!-- Daily Forecast -->
+          <!-- Daily Forecast
           <section class="daily-forecast">
             <h3 class="section-title">Daily forecast</h3>
             <ul class="forecast-list">
@@ -207,6 +208,14 @@
                 </div>
               </li>
             </ul>
+          </section> -->
+          <!-- Daily Forecast -->
+          <section class="daily-forecast">
+            <h3 class="section-title">Daily forecast</h3>
+            <ul class="forecast-list">
+              <!-- The JavaScript will populate this list dynamically -->
+              <!-- Leave it empty. The JS will generate 7 <li> elements. -->
+            </ul>
           </section>
         </div>
         <!-- Hourly Forecast -->
@@ -252,16 +261,6 @@
                 <p>20°</p>
               </div>
             </div>
-            <!-- <ul class="hourly-list">
-              <li class="hour">3 PM - 🌥️ 20°</li>
-              <li class="hour">4 PM - ☁️ 20°</li>
-              <li class="hour">5 PM - ☀️ 20°</li>
-              <li class="hour">6 PM - 🌥️ 19°</li>
-              <li class="hour">7 PM - 🌧️ 18°</li>
-              <li class="hour">8 PM - 🌧️ 18°</li>
-              <li class="hour">9 PM - 🌧️ 17°</li>
-              <li class="hour">10 PM - 🌧️ 17°</li>
-            </ul> -->
           </section>
         </div>
       </div>
