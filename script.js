@@ -1,9 +1,8 @@
-// script.js - Final, Working Version
+// script.js - Final, Working Version with Correct Emojis
 
 class WeatherApp {
   constructor() {
     this.apiBaseUrl = "https://api.open-meteo.com/v1/forecast";
-    this.geocodingUrl = "https://geocoding-api.open-meteo.com/v1/search";
     this.currentLocation = null;
     this.currentUnit = "metric"; // 'metric' or 'imperial'
     this.lastFetchedHourlyData = null;
@@ -63,7 +62,7 @@ class WeatherApp {
       if (e.key === "Enter") this.handleSearch();
     });
 
-    // Unit Toggle Dropdown Show/Hide
+    // Unit Toggle Dropdown
     this.unitsBtn.addEventListener("click", () => {
       this.unitDropdown.classList.toggle("active");
     });
@@ -139,87 +138,36 @@ class WeatherApp {
   }
 
   async loadDefaultWeather() {
-    const setLocationAndFetchWeather = async (lat, lon) => {
-      // ✅ Add validation for coordinates
-      if (
-        typeof lat !== "number" ||
-        typeof lon !== "number" ||
-        isNaN(lat) ||
-        isNaN(lon)
-      ) {
-        console.error("Invalid coordinates provided:", lat, lon);
-        return;
-      }
-
-      try {
-        const geoResponse = await fetch(
-          `${this.geocodingUrl}?latitude=${lat}&longitude=${lon}&count=1&language=en&format=json`
-        );
-        const geoData = await geoResponse.json();
-
-        if (geoData.results && geoData.results.length > 0) {
-          const result = geoData.results[0];
-
-          const getLocationName = (res) => {
-            return (
-              res.name ||
-              res.city ||
-              res.town ||
-              res.village ||
-              res.municipality ||
-              res.administrative_area ||
-              "Location"
-            );
-          };
-
-          this.currentLocation = {
-            ...result,
-            name: getLocationName(result),
-          };
-        } else {
-          this.currentLocation = {
-            latitude: lat,
-            longitude: lon,
-            name: "Location",
-            country: "",
-          };
-        }
-
-        this.fetchAndDisplayWeather(lat, lon);
-      } catch (error) {
-        console.warn("Geocoding error:", error);
-        this.currentLocation = {
-          latitude: lat,
-          longitude: lon,
-          name: "Berlin",
-          country: "Germany",
-        };
-        this.fetchAndDisplayWeather(lat, lon);
-      }
+    const useLocation = (lat, lon, displayName) => {
+      this.currentLocation = {
+        latitude: lat,
+        longitude: lon,
+        name: displayName,
+        country: displayName === "Berlin" ? "Germany" : "",
+      };
+      this.fetchAndDisplayWeather(lat, lon);
     };
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocationAndFetchWeather(
-            position.coords.latitude,
-            position.coords.longitude
-          );
-        },
-        (error) => {
-          console.warn("Geolocation error:", error);
-          setLocationAndFetchWeather(52.52, 13.41); // Berlin
-        }
+        (pos) =>
+          useLocation(
+            pos.coords.latitude,
+            pos.coords.longitude,
+            "Your Location"
+          ),
+        () => useLocation(52.52, 13.41, "Berlin")
       );
     } else {
-      setLocationAndFetchWeather(52.52, 13.41);
+      useLocation(52.52, 13.41, "Berlin");
     }
   }
 
   async searchLocation(query) {
     try {
+      const geocodingUrl = "https://geocoding-api.open-meteo.com/v1/search";
       const response = await fetch(
-        `${this.geocodingUrl}?name=${encodeURIComponent(
+        `${geocodingUrl}?name=${encodeURIComponent(
           query
         )}&count=1&language=en&format=json`
       );
@@ -259,19 +207,9 @@ class WeatherApp {
       const response = await fetch(`${this.apiBaseUrl}?${params}`);
       const data = await response.json();
 
-      // Ensure currentLocation is set to avoid null errors
-      if (!this.currentLocation) {
-        this.currentLocation = {
-          latitude: lat,
-          longitude: lon,
-          name: "Location",
-          country: "",
-        };
-      }
-
       this.updateUI(data);
     } catch (error) {
-      console.error("Error fetching weather ", error);
+      console.error("Error fetching weather data:", error);
       alert("An error occurred while fetching weather data.");
     }
   }
@@ -321,13 +259,12 @@ class WeatherApp {
   }
 
   updateSevenDayForecast(dailyData) {
-    this.forecastList.innerHTML = ""; // This clears any existing content
+    this.forecastList.innerHTML = "";
 
     for (let i = 0; i < 7; i++) {
       const day = document.createElement("li");
       day.className = "day";
 
-      // Day Name
       const dayName = document.createElement("p");
       dayName.textContent =
         i === 0
@@ -336,24 +273,22 @@ class WeatherApp {
               weekday: "short",
             });
 
-      // Emoji - This is a TEXT node, not an image
       const emoji = document.createElement("p");
       emoji.textContent = this.getWeatherEmoji(dailyData.weather_code[i]);
 
-      // Temp Range
       const tempRange = document.createElement("div");
       tempRange.className = "forecast-day";
       tempRange.innerHTML = `
-            <span>${this.formatTemperature(
-              dailyData.temperature_2m_max[i]
-            )}</span>
-            <span>${this.formatTemperature(
-              dailyData.temperature_2m_min[i]
-            )}</span>
-        `;
+                <span>${this.formatTemperature(
+                  dailyData.temperature_2m_max[i]
+                )}</span>
+                <span>${this.formatTemperature(
+                  dailyData.temperature_2m_min[i]
+                )}</span>
+            `;
 
       day.appendChild(dayName);
-      day.appendChild(emoji); // This is where the emoji text goes
+      day.appendChild(emoji);
       day.appendChild(tempRange);
 
       this.forecastList.appendChild(day);
@@ -366,16 +301,12 @@ class WeatherApp {
     for (let i = 0; i < 7; i++) {
       const option = document.createElement("option");
       option.value = i;
-
-      if (i === 0) {
-        option.textContent = "Today";
-      } else {
-        const date = new Date(dailyData.time[i]);
-        option.textContent = date.toLocaleDateString("en-US", {
-          weekday: "long",
-        });
-      }
-
+      option.textContent =
+        i === 0
+          ? "Today"
+          : new Date(dailyData.time[i]).toLocaleDateString("en-US", {
+              weekday: "long",
+            });
       this.daySelect.appendChild(option);
     }
   }
@@ -386,20 +317,19 @@ class WeatherApp {
     this.hourlyList.innerHTML = "";
 
     const startIndex = dayIndex * 24;
-    const endIndex = startIndex + 24;
+    const endIndex = Math.min(
+      startIndex + 24,
+      this.lastFetchedHourlyData.time.length
+    );
 
-    for (
-      let i = startIndex;
-      i < endIndex && i < this.lastFetchedHourlyData.time.length;
-      i += 3
-    ) {
+    for (let i = startIndex; i < endIndex; i += 3) {
       const hourItem = document.createElement("div");
-
-      const hour = document.createElement("p");
       const time = new Date(this.lastFetchedHourlyData.time[i]);
       const emoji = this.getWeatherEmoji(
         this.lastFetchedHourlyData.weather_code[i]
       );
+
+      const hour = document.createElement("p");
       hour.textContent = `${emoji} ${time.toLocaleTimeString("en-US", {
         hour: "numeric",
         hour12: true,
@@ -412,7 +342,6 @@ class WeatherApp {
 
       hourItem.appendChild(hour);
       hourItem.appendChild(temp);
-
       this.hourlyList.appendChild(hourItem);
     }
   }
@@ -472,49 +401,32 @@ class WeatherApp {
       96: "icon-storm.webp",
       99: "icon-storm.webp",
     };
-
     const iconName = iconMap[wmoCode] || "icon-cloudy.webp";
     return `./assets/images/${iconName}`;
   }
 
   getWeatherEmoji(wmoCode) {
-    const emojiMap = {
-      0: "☀️",
-      1: "🌤️",
-      2: "⛅",
-      3: "☁️",
-      45: "🌫️",
-      48: "🌫️",
-      51: "🌦️",
-      53: "🌦️",
-      55: "🌧️",
-      56: "🌨️",
-      57: "🌨️",
-      61: "🌧️",
-      63: "🌧️",
-      65: "⛈️",
-      66: "🌨️",
-      67: "🌨️",
-      71: "❄️",
-      73: "❄️",
-      75: "❄️",
-      77: "❄️",
-      80: "🌦️",
-      81: "⛈️",
-      82: "⛈️",
-      85: "🌨️",
-      86: "🌨️",
-      95: "⛈️",
-      96: "⛈️",
-      99: "⛈️",
-    };
-
-    return emojiMap[wmoCode] || "☁️";
+    // All emojis are standard Unicode and supported on all modern devices
+    if (wmoCode === 0) return "☀️"; // Clear sky
+    if (wmoCode === 1) return "🌤️"; // Mainly clear
+    if (wmoCode === 2) return "⛅"; // Partly cloudy
+    if (wmoCode === 3) return "☁️"; // Overcast
+    if ([45, 48].includes(wmoCode)) return "🌫️"; // Fog
+    if ([51, 53, 55].includes(wmoCode)) return "🌦️"; // Drizzle
+    if ([56, 57].includes(wmoCode)) return "🌧️"; // Freezing Drizzle
+    if ([61, 63].includes(wmoCode)) return "🌧️"; // Rain
+    if ([65].includes(wmoCode)) return "⛈️"; // Heavy Rain
+    if ([66, 67].includes(wmoCode)) return "🌧️"; // Freezing Rain
+    if ([71, 73, 75, 77].includes(wmoCode)) return "❄️"; // Snow
+    if ([80, 81, 82].includes(wmoCode)) return "🌧️"; // Rain Showers
+    if ([85, 86].includes(wmoCode)) return "❄️"; // Snow Showers
+    if ([95, 96, 99].includes(wmoCode)) return "⛈️"; // Thunderstorm
+    return "☁️"; // Default
   }
 
   getWeatherDescription(wmoCode) {
     if (wmoCode === 0) return "Clear Sky";
-    if (wmoCode >= 1 && wmoCode <= 3) return "Partly cloud";
+    if (wmoCode >= 1 && wmoCode <= 3) return "Partly Cloudy";
     if (wmoCode === 45 || wmoCode === 48) return "Fog";
     if (wmoCode >= 51 && wmoCode <= 57) return "Drizzle";
     if (wmoCode >= 61 && wmoCode <= 67) return "Rain";
