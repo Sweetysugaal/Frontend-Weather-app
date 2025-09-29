@@ -493,19 +493,22 @@ footer a {
   }
   .units .unit-dropdown {
     left: 0; /* align left edge */
-    right: auto;
+    right: 200px;
     padding: 0.5rem; /* Fixed: removed invalid '2' */
-    width: 180px;
+    width: 300px;
   }
   .daily-forecast .forecast-list {
     grid-template-columns: repeat(2, 1fr); /* 2 columns */
     gap: 1rem;
   }
+}
 
-  /* Very small screens: single column for forecast */
-  @media (max-width: 30em) {
-    .daily-forecast .forecast-list {
-      grid-template-columns: 1fr;
-    }
+/* Very small screens: single column for forecast */
+@media (max-width: 30em) {
+  .daily-forecast .forecast-list {
+    grid-template-columns: 1fr;
   }
 }
+/* -------------------
+  End of Styles
+------------------- */
