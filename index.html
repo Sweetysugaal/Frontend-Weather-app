@@ -10,7 +10,7 @@
       sizes="32x32"
       href="./assets/images/favicon-32x32.png"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link id="theme-style" rel="stylesheet" href="dark.css" />
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;500;600;700&family=Bricolage+Grotesque:wght@700&display=swap"
@@ -23,13 +23,21 @@
         <img src="./assets/images/logo.svg" alt=" Weather Now Logo" />
       </div>
       <div class="units">
-        <button class="units-btn">
+        <button type="button" class="units-btn">
           <img src="./assets/images/icon-units.svg" alt="Units Icon" />
-          <span>Units</span>
+          <span class="unit-text">Units</span>
           <img src="./assets/images/icon-dropdown.svg" alt="Dropdown Icon" />
         </button>
 
         <ul class="unit-dropdown">
+          <li class="theme">
+            Switch theme
+            <img
+              class="theme-icon"
+              src="./assets/images/contrast-outline.svg"
+              alt="Switch Theme"
+            />
+          </li>
           <!-- Heading -->
           <li class="unit-heading">Switch to Imperial</li>
 
@@ -80,7 +88,7 @@
 
     <main class="main">
       <!-- Title -->
-      <h1 class="title">How’s the sky looking today?</h1>
+      <h1 class="title">How&apos;s the sky looking today?</h1>
 
       <!-- Search Bar -->
       <div class="search-bar">
@@ -92,7 +100,7 @@
           />
           <input type="text" id="search-input" placeholder="Enter city name" />
         </div>
-        <button type="button">Search</button>
+        <button class="search-btn" type="button">Search</button>
       </div>
 
       <!-- Current Weather Card -->
@@ -211,7 +219,7 @@
           </section> -->
           <!-- Daily Forecast -->
           <section class="daily-forecast">
-            <h3 class="section-title">Daily forecast</h3>
+            <h3 class="daily-title">Daily forecast</h3>
             <ul class="forecast-list">
               <!-- I  will populate this list dynamically -->
             </ul>
@@ -221,7 +229,7 @@
         <div class="hourly-forecast-card">
           <section class="hourly-forecast">
             <div class="hourly-header">
-              <p class="section-title">Hourly forecast</p>
+              <p class="hourly-title">Hourly forecast</p>
               <select class="day-select">
                 <option>Tuesday</option>
               </select>

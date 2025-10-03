@@ -1,3 +1,32 @@
+body {
+  background-image: url("./assets/images/cloud-sky.jpg");
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+.theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.theme-icon {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  filter: invert(1);
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 /* -------------------
   Global Styles
 ------------------- */
@@ -10,6 +39,12 @@
   --neutral-300: hsl(240, 6%, 70%);
   --neutral-200: hsl(250, 6%, 84%);
   --neutral-0: hsl(0, 0%, 100%);
+
+  /* only for light */
+  --blue-500: hsl(233, 67%, 56%);
+  --blue-300: hsl(233, 95%, 92%);
+  --blue-700: hsl(248, 70%, 36%);
+  --blue-100: hsl(195, 71%, 60%);
 
   /* Accent */
   --orange-500: hsl(28, 100%, 52%);
@@ -63,11 +98,17 @@ header {
   margin-bottom: 3rem;
   height: 40px;
 }
+.unit-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  color: var(--neutral-600);
+}
 
 .units button {
-  background: var(--neutral-700);
-  color: var(--neutral-0);
-  border: none;
+  /* background: var(--neutral-700); */
+  background-color: transparent;
+  border: 1px solid var(--neutral-900);
   padding: 1rem 1.5rem;
   border-radius: 6px;
   cursor: pointer;
@@ -91,6 +132,19 @@ header {
   padding: 0.5rem;
 }
 
+.theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.theme-icon {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  filter: invert(1);
+}
+
 .units .unit-dropdown {
   display: none;
   position: absolute;
@@ -98,7 +152,8 @@ header {
   left: calc(100% - 280px); /* align right edge */
   right: 0;
   border: 1px solid var(--neutral-600);
-  background: var(--neutral-800);
+  background: var(--neutral-200);
+  color: var(--neutral-600);
   border-radius: 8px;
   padding: 0.5rem;
   overflow: hidden;
@@ -118,7 +173,7 @@ header {
 
 .unit-dropdown li:hover {
   background: var(--neutral-700);
-  color: var(--orange-500); /* Added accent color on hover */
+  color: var(--neutral-0);
 }
 
 .default {
@@ -149,6 +204,7 @@ header {
   font-family: var(--font-heading);
   text-align: center;
   margin-bottom: 3rem;
+  color: var(--neutral-600);
 }
 
 .search-bar {
@@ -169,15 +225,15 @@ header {
   padding: 1rem 1rem 1rem 2.5rem; /* left padding for icon */
   border-radius: 8px;
   border: none;
-  background: var(--neutral-700);
-  color: var(--neutral-0);
+  background: var(--neutral-0);
+  color: var(--neutral-900);
 }
 
 /* Focus state for accessibility */
 #search-input:focus {
   outline: 2px solid var(--blue-500);
   outline-offset: 2px;
-  background: var(--neutral-800); /* Slightly different bg on focus */
+  /* background: var(--neutral-800); Slightly different bg on focus */
 }
 
 .search-input .search-icon {
@@ -191,9 +247,9 @@ header {
 }
 
 .search-bar button {
-  background: var(--blue-500);
-  color: var(--neutral-0);
-  border: none;
+  background: var(--neutral-300);
+  color: var(--neutral-600);
+  border: 1px solid var(--neutral-600);
   border-radius: 8px;
   padding: 0.75rem 1.5rem;
   cursor: pointer;
@@ -201,7 +257,7 @@ header {
 }
 
 .search-bar button:hover {
-  background: var(--blue-700);
+  background: var(--neutral-0);
 }
 
 .search-bar button:focus {
@@ -219,26 +275,28 @@ header {
 }
 
 .current-weather {
-  background-image: url("./assets/images/bg-today-large.svg");
+  /* background-image: url("./assets/images/bg-today-large.svg"); */
   background-size: cover;
   background-position: center;
   padding: 4rem;
   border-radius: 16px;
+  border: 2px solid var(--neutral-600);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added for depth */
 }
 
 .current-weather h2 {
   font-size: var(--font-size-body); /* Fixed: was --font-body-size */
   font-weight: 600; /* Added for better hierarchy */
+  color: var(--neutral-600);
 }
 
 .current-weather p {
   font-size: 0.8rem;
-  color: var(--neutral-200);
+  color: var(--neutral-700);
 }
 
 .temperature {
@@ -248,6 +306,7 @@ header {
   font-size: 4rem;
   font-family: var(--font-heading);
   font-weight: 700;
+  color: var(--neutral-600);
 }
 
 /* -------------------
@@ -261,7 +320,9 @@ header {
 }
 
 .weather-stats .stat {
-  background: var(--neutral-800);
+  /* background: var(--neutral-800); */
+  color: var(--neutral-600);
+  border: 2px solid var(--neutral-600);
   padding: 1.5rem;
   border-radius: 8px;
   text-align: center;
@@ -269,7 +330,7 @@ header {
 }
 
 .weather-stats p {
-  color: var(--neutral-200);
+  color: var(--neutral-600);
   font-size: 0.9rem;
 }
 
@@ -277,10 +338,19 @@ header {
   font-size: var(--font-size-body);
   font-weight: 400;
 }
+.weather-stats .stat:hover {
+  background-color: var(--neutral-200);
+}
 
 /* -------------------
   Daily Forecast
 ------------------- */
+
+.daily-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--neutral-600);
+}
 
 .forecast-list {
   display: grid;
@@ -291,7 +361,9 @@ header {
 }
 
 .daily-forecast .day {
-  background: var(--neutral-800);
+  /* background: var(--neutral-800); */
+  color: var(--neutral-600);
+  border: 2px solid var(--neutral-600);
   padding: 1rem;
   border-radius: 8px;
   text-align: center;
@@ -305,7 +377,7 @@ header {
 
 /* Hover state for interactivity */
 .daily-forecast .day:hover {
-  background: var(--neutral-700);
+  background: var(--neutral-200);
   transform: translateY(-2px);
 }
 
@@ -321,15 +393,18 @@ header {
   Hourly Forecast
 ------------------- */
 .hourly-forecast {
-  background: var(--neutral-800);
+  /* background: var(--neutral-800); */
+  border: 2px solid var(--neutral-600);
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added for depth */
 }
 
-.section-title {
-  font-size: 1.2rem;
+.hourly-title {
+  font-size: 1.1rem;
+  font-weight: 600;
   margin-bottom: 0.5rem;
+  color: var(--neutral-600);
 }
 
 .hourly-forecast .day-select {
@@ -356,7 +431,8 @@ header {
 }
 
 .hourly-forecast .hourly-list div {
-  background: var(--neutral-700);
+  /* background: var(--neutral-700); */
+  color: var(--neutral-600);
   padding: 0.75rem 1rem;
   border-radius: 6px;
   margin-bottom: 0.5rem;
@@ -420,16 +496,17 @@ footer a {
 }
 /* below 768px */
 @media (max-width: 768px) {
-  .current-weather {
+  /* .current-weather {
     background-image: url("./assets/images/bg-today-small.svg");
     background-size: cover;
     background-position: center;
-  }
+  } */
   .title {
     font-size: 4.5rem;
     line-height: 1;
     margin-bottom: 5rem;
   }
+
   .search-bar button,
   .search-input input {
     padding: 1rem;
@@ -492,7 +569,7 @@ footer a {
     font-size: 2rem;
   }
   .units .unit-dropdown {
-    left: 0; /* align left edge */
+    left: -100px;
     right: 200px;
     padding: 0.5rem; /* Fixed: removed invalid '2' */
     width: 300px;

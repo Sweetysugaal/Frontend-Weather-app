@@ -75,6 +75,19 @@ class WeatherApp {
         this.unitDropdown.classList.remove("active");
       }
     });
+    //light theme
+    const themeIcon = document.querySelector(".theme-icon");
+    const themeLink = document.getElementById("theme-style");
+
+    themeIcon.addEventListener("click", () => {
+      if (themeLink.getAttribute("href") === "dark.css") {
+        themeLink.setAttribute("href", "light.css");
+      } else {
+        themeLink.setAttribute("href", "dark.css");
+      }
+    });
+
+    //end
 
     // Unit Selection
     const unitItems = this.unitDropdown.querySelectorAll(
